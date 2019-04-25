@@ -1,7 +1,8 @@
-# y
+# Happy Friday
 
-> y
+> Happy Friday
 
+## This is a simple practicing project for my vuex.
 ## Build Setup
 
 ``` bash
