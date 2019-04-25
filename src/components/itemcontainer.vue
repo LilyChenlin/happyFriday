@@ -1,5 +1,6 @@
+<!--  -->
 <template>
-    <section>
+   <section>
       <header class="top_tips">
         <span class="num_tip" v-if="fatherComponent == 'home'">{{level}}</span>
         <span class="num_tip" v-if="fatherComponent == 'item'">题目{{itemNum}}</span>
@@ -24,7 +25,8 @@
         <span class="submit_item button_style" v-else @click="submitAnswer" ></span>
       </div>
     </section>
-  </template>
+</template>
+
   <script>
     import {mapState,mapActions} from 'vuex'
     export default {
@@ -33,6 +35,7 @@
         return {
             choosedNum:null, //题目的索引index
             chooseId:null //选中答案id
+          
         }
         ;
       },
@@ -52,14 +55,14 @@
           },
           //已选择答案的id和索引index 0-3
           choosed(type,id){
-              this.choosedNum = type;
+              this.choosedNum = type; //type为index
               this.chooseId = id; //chooseId为store中设置的id
           },
         //   点击进入下一题
           nextItem(){
               if(this.choosedNum !== null){
-                  this.choosedNum == null;
-                  this.nextItem(this.chooseId);//存储选择的值
+                  this.choosedNum = null;
+                  this.clickNext(this.chooseId);//存储选择的值
               }else{
                   alert("您还没有选择答案！");
               }
@@ -67,7 +70,7 @@
           //提交,跳转分数页面
           submitAnswer(){
             if(this.choosedNum !== null){
-              this.nextItem(this.chooseId);
+              this.clickNext(this.chooseId);
               this.$router.push('score')
             }else{
               alert("您还没有选择答案哦")
@@ -77,7 +80,7 @@
       created(){
           //初始化信息
           if(this.fatherComponent == 'home'){
-              // this.initializeData();
+              this.initializeData();
               // document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
           } 
       }
